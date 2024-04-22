@@ -21,6 +21,7 @@ public class VOGenerator {
                 line -> ColumnInfo.builder()
                     .name(line[0])
                     .dataType(line[1])
+                    .comment(line[2])
                     .build()));
         return columnMap;
     }
@@ -100,7 +101,14 @@ public class VOGenerator {
     }
 
     public static void main(String[] args) {
-        String schema = "BOARD_PK;bigint;\nTTL;varchar;\nCN;varchar;\nREAD_CNT;int;\nDEL_AT;varchar;\nREG_USER_ID;varchar;\nREG_DTM;datetime;\nUPD_USER_ID;varchar;\nUPD_DTM;datetime;\nATCH_FL_GRP_PK;bigint;";
+        String schema =
+             "SCRAP_PK;bigint;스크랩 테이블 PK\n"
+            + "REG_DTM;datetime;등록일\n"
+            + "REG_EMP_ID;varchar;등록 아이디\n"
+            + "UPD_DTM;datetime;수정일\n"
+            + "UPD_EMP_ID;varchar;수정 아이디\n"
+            + "SCRAP_AT;varchar;스크랩 여부\n"
+            + "BOARD_PK;bigint;게시글PK\n";
         String voClassDefinition = VOGenerator.generateVOClass(schema);
         System.out.println(voClassDefinition);
     }
