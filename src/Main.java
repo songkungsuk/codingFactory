@@ -32,15 +32,17 @@ public class Main {
             } else { // 공격 당하지 않았을 때
                 // 초당 체력오르는중
                 health = health + bandage[1];
+                useTime++;
                 // 원하는 시간이 흐르면 체력이 더 오름
                 if (useTime == bandage[0]) {
                     health = health + bandage[2];
+                    useTime = 0;
                 }
                 // 체력은 최대체력을 못넘음
                 if (health > maxHealth) {
                     health = maxHealth;
                 }
-                useTime++;
+
             }
         }
         // 모든 행동이 끝나면 남은 체력 리턴
